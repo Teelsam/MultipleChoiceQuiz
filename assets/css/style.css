@@ -3,15 +3,28 @@ html {
 }
 
 .question {
-    background-color: aquamarine;
+    background-color:brown;
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: blanchedalmond;
+}
+.options{
+    display: block;
+    font-size: 15px;
+    list-style:lower-latin;
+}
+header{
+    border: 10;
+    border-style:ridge;
+    border-color: brown;
 }
 header h1 {
     
     text-align: center;
-    padding-right: 150px;
+    padding-right: 200px;
     background-color: brown;
     font-weight: 200;
-    color:darksalmon
+    color:blanchedalmond;
 
 }
 header h2 {
@@ -21,4 +34,45 @@ header h2 {
     font-weight: 900;
     padding-right: 200px;
 
+}
+.buttons{/*Sets the button sections position*/
+    text-align: center;
+    padding-right: 200px;
+
+}
+#start{ /*Design for the start button*/
+    background-color: blanchedalmond;
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+    font-weight: 600;
+    font-size: 19px;
+    padding: 20px;
+    color:brown;
+}
+#start:hover{/*Adds on hover effects*/
+    background-color: brown;
+    color:blanchedalmond;
+    box-shadow: 5px 8px 2px;
+}
+#time{ /*Sets the timers style*/
+    text-align: right;
+    font-size: 25px;
+    background-color: thistle;
+    border: 5px;
+}
+#outOfTimeMsg{
+    text-align: center;
+    color:lavender;
+    padding-right:  180px;
+    font-size: 25px;
+    background-color:firebrick;
+    border: 5px;
+}
+footer{
+    display: block;
+    padding-right:160px;
+    background-color: darkblue;
+    border: 5px;
+    color:crimson;
+    text-align: center;
 }

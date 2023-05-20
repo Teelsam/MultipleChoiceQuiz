@@ -10,20 +10,41 @@
 
   <body>
     <header>
+      <!--The top of the site and the high score button-->
       <h1>Welcome to the Quiz</h1>
       <h2>🧩 Rest awhile and study 🦆</h2>
-      <button class="highscore">highscore</button>
+      <button class="hsBtn">highscore</button>
     </header>
 
-    <section id="time"></section>
-    <section class="errors">
-         <p id="outOfTimeMsg"></p>
+    <section>
+      <!--the time counter sits in this section-->
+      <p id="time"></p>
     </section>
-    <section class="question"></section>
+    <section class="errors">
+      <!--The out of time display message sits here-->
+      <p id="outOfTimeMsg"></p>
+    </section>
+    <section class="question">
+      <!--Questions load here-->
+      <h3 id="askedQ"></h3>
+      <ul class="options">
+        <li id="op1"></li>
+        <li id="op2"></li>
+        <li id="op3"></li>
+      </ul>
+    </section>
     <section class="buttons">
-      <button id = "start">Start Game?</button>
+      <!--button options sit here-->
+      <button id="start">Start Game?</button>
+    </section>
+    <section>
+      <!--this section holds scoreboard-->
+      <ul class="highscore"></ul>
     </section>
     <!--Loads our javascript-->
     <script src="assets/javascript/script.js"></script>
   </body>
+  <footer>
+    <p>A site by Sam 🐀</p>
+  </footer>
 </html>
