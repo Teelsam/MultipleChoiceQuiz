@@ -120,6 +120,13 @@ form{
     border: 2px;
     background-color:peachpuff;
 }
+.highscores li {
+    padding: 5px;
+    margin: 2px;
+    border: 1px;
+    border-style: solid;
+    list-style-type: none;
+}
 footer{
     display: block;
     position: absolute;

@@ -15,15 +15,18 @@ var aBtn = document.getElementById("a");
 var bBtn = document.getElementById("b");
 var cBtn = document.getElementById("c");
 var highscoreShow = document.getElementById("hsBtn");//this is the highscore button.
-var highscoreBoard = document.getElementById("highscores");//this is the score board.
+var firstPosition = document.getElementById("firstPlace");
+var secondPosition = document.getElementById("secondPlace");
+var thirdPosition = document.getElementById("thirdPlace");
+
 var scoreSpace = document.getElementById("score");
 var score = 0;
-var playerList = localStorage.getItem("list");
 
 var playerInfo = {
     playerName: "",
     playerScore: 0,
 };
+
 var possibleQs = [
     {//Q0 a
         question: "What does getElementById look for?",
@@ -232,8 +235,37 @@ function timesUp() { //this displays text when timeLeft === 0
 
 
 }
-function highscore() {//this loads the score board
-
+function highscore() {//this loads the score board 
+    //NEEDS
+    //ALOT 
+    //OF 
+    //WORK
+    // HERE
+    var highlist = {
+        firstPlace: "",
+        firstPlaceScore: 0,
+        secondPlace: "",
+        secondPlaceScore: 0,
+        thirdPlace: "",
+        thirdPlaceScore: 0,
+    }
+    if (playerInfo.playerScore > highlist.firstPlaceScore) {
+        highlist.firstPlace = playerInfo.playerName;
+        highlist.firstPlaceScore = playerInfo.playerScore;
+        localStorage.getItem("highlist", JSON.stringify(highlist));
+    }
+    else if (playerInfo.playerScore > highlist.secondPlaceScore && playerInfo.playerScore < highlist.firstPlaceScore) {
+        highlist.secondPlace = playerInfo.playerName;
+        highlist.secondPlaceScore = playerInfo.playerScore;
+        localStorage.getItem("highlist", JSON.stringify(highlist));
+    }
+    else if (playerInfo.playerScore > highlist.thirdPlaceScore && playerInfo.playerScore < highlist.secondPlaceScore) {
+        highlist.thirdPlace = playerInfo.playerName;
+        highlist.thirdPlaceScore = playerInfo.playerScore;
+    }
+    firstPosition.textContent = highlist.firstPlace;
+    secondPosition.textContent = highlist.secondPlace;
+    thirdPosition.textContent = highlist.thirdPlace;
 
 }
 startGame.addEventListener("click", function () { // this button when clicked removes start button and starts timer
@@ -247,4 +279,4 @@ startGame.addEventListener("click", function () { // this button when clicked re
 submitEl.addEventListener("click", enterName);
 
 
-// highscoreShow.addEventListener("click",);
+highscoreShow.addEventListener("click", highscore);
