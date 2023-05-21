@@ -1,10 +1,11 @@
 var startGame = document.getElementById("start");
 var timeEl = document.getElementById("time");
-var timeLeft = 100; // Sets timer starting time.
+var timeLeft = 15; // Sets timer starting time.
 var endMessage = document.getElementById("outOfTimeMsg");
 var submitEl = document.querySelector("#submit");
 var nameInput = document.querySelector("#formName");
 var nameResponse = document.getElementById("response");
+var nameWarning = document.getElementById("nameWarning");
 var askedQ = document.getElementById("askedQ");
 var options = document.getElementById("options");
 var op1 = document.getElementById("op1");
@@ -198,7 +199,7 @@ function unloadQuestion() {
     playerInfo.playerScore = score;
     console.log(playerInfo);
     localStorage.setItem("playerInfo", JSON.stringify(playerInfo));
-   
+
 
 }
 
@@ -213,24 +214,6 @@ function setTime() { //this function counts down from "timeLeft"
         }
     }, 1000);
 }
-function timesUp() { //this displays text when timeLeft === 0
-    timeEl.textContent = " ";
-    endMessage.textContent = "Times up, Friend... Please type your name"
-    unloadQuestion();
-}
-function highscore() {//this loads the score board
-
-
-}
-startGame.addEventListener("click", function () { // this button when clicked removes start button and starts timer
-    // this begins the timer 
-    setTime();
-    startGame.style.display = 'none';
-    loadQuestion();
-
-});
-submitEl.addEventListener("click", enterName);
-
 function enterName(event) { // records name entered 
     event.preventDefault();
     console.log(event);
@@ -240,4 +223,28 @@ function enterName(event) { // records name entered
 
     return;
 }
+function timesUp() { //this displays text when timeLeft === 0
+    timeEl.textContent = " ";
+    endMessage.textContent = "Times up, Friend... ";
+
+    unloadQuestion();
+
+
+
+}
+function highscore() {//this loads the score board
+
+
+}
+startGame.addEventListener("click", function () { // this button when clicked removes start button and starts timer
+    // this begins the timer 
+    setTime();
+    startGame.style.display = 'none';
+    nameWarning.style.display = "none";
+    loadQuestion();
+
+});
+submitEl.addEventListener("click", enterName);
+
+
 // highscoreShow.addEventListener("click",);

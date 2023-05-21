@@ -57,6 +57,17 @@ form{
     font-size: 15px;
 
 }
+.buttons p {
+    display: flex;
+    position: absolute;
+    left: 300px;
+    justify-content: center;
+    width:10%;
+    color:brown;
+    background-color: blanchedalmond;
+    border: 2px;
+
+}
 
 .selectors:hover{
     background-color: brown;
