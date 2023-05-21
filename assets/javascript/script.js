@@ -1,7 +1,10 @@
 var startGame = document.getElementById("start");
 var timeEl = document.getElementById("time");
-var timeLeft = 10; // Sets timer starting time.
+var timeLeft = 100; // Sets timer starting time.
 var endMessage = document.getElementById("outOfTimeMsg");
+var submitEl = document.querySelector("#submit");
+var nameInput = document.querySelector("#formName");
+var nameResponse = document.getElementById("response");
 var askedQ = document.getElementById("askedQ");
 var options = document.getElementById("options");
 var op1 = document.getElementById("op1");
@@ -12,11 +15,14 @@ var bBtn = document.getElementById("b");
 var cBtn = document.getElementById("c");
 var highscoreShow = document.getElementById("hsBtn");//this is the highscore button.
 var highscoreBoard = document.getElementById("highscores");//this is the score board.
-var userName = document.getElementById("userName");//gets the users name for score keeping
 var scoreSpace = document.getElementById("score");
 var score = 0;
+var playerList = localStorage.getItem("list");
 
-
+var playerInfo = {
+    playerName: "",
+    playerScore: 0,
+};
 var possibleQs = [
     {//Q0 a
         question: "What does getElementById look for?",
@@ -51,31 +57,31 @@ function loadQuestion() {// loads questions and corresponding answers, randomly
 
     aBtn.addEventListener("click", function () {
         if (questionPicker === 0 && timeLeft > 0) {
-            timeLeft += 1;
-            score++;
+            timeLeft++;
+            score = score + 1;
             scoreSpace.textContent = score;
             console.clear();
             console.log("correct. Your score is now: " + score);
             loadQuestion();
         }
         else if (questionPicker === 1 && timeLeft > 0) {
-            timeLeft -= 1;
-            score--;
+            timeLeft--;
+            score = score - 1;
             scoreSpace.textContent = score;
             console.clear();
-            console.log("false");
+            console.log("false, you score is now: " + score);
             loadQuestion();
         }
         else if (questionPicker === 2 && timeLeft > 0) {
-            timeLeft -= 1;
+            timeLeft--;
             score--;
             scoreSpace.textContent = score;
             console.clear();
-            console.log("false");
+            console.log("false, you score is now: " + score);
             loadQuestion();
         }
         else if (questionPicker === 3 && timeLeft > 0) {
-            timeLeft += 1;
+            timeLeft++;
             score++;
             scoreSpace.textContent = score;
             console.clear();
@@ -83,30 +89,31 @@ function loadQuestion() {// loads questions and corresponding answers, randomly
             loadQuestion();
         }
         else if (questionPicker === 4 && timeLeft > 0) {
-            timeLeft += 1;
+            timeLeft++;
             score++;
             scoreSpace.textContent = score;
             console.clear();
             console.log("correct. Your score is now: " + score);
             loadQuestion();
         }
+        else { }
     })
 
     bBtn.addEventListener("click", function () {
         if (questionPicker === 0 && timeLeft > 0) {
-            timeLeft -= 1;
+            timeLeft--;
             score--;
             scoreSpace.textContent = score;
             console.clear();
-            console.log("false");
+            console.log("false, you score is now: " + score);
             loadQuestion();
         }
         else if (questionPicker === 1 && timeLeft > 0) {
-            timeLeft -= 1;
+            timeLeft--;
             score--;
             scoreSpace.textContent = score;
             console.clear();
-            console.log("false");
+            console.log("false, you score is now: " + score);
             loadQuestion();
         }
         else if (questionPicker === 2 && timeLeft > 0) {
@@ -118,34 +125,35 @@ function loadQuestion() {// loads questions and corresponding answers, randomly
             loadQuestion();
         }
         else if (questionPicker === 3 && timeLeft > 0) {
-            timeLeft -= 1;
+            timeLeft--;
             score--;
             scoreSpace.textContent = score;
             console.clear();
-            console.log("false");
+            console.log("false, you score is now: " + score);
             loadQuestion();
         }
         else if (questionPicker === 4 && timeLeft > 0) {
-            timeLeft -= 1;
+            timeLeft--;
             score--;
             scoreSpace.textContent = score;
             console.clear();
-            console.log("false");
+            console.log("false, you score is now: " + score);
             loadQuestion();
         }
+        else { }
     })
 
     cBtn.addEventListener("click", function () {
         if (questionPicker === 0 && timeLeft > 0) {
-            timeLeft -= 1;
+            timeLeft--;
             score--;
             scoreSpace.textContent = score;
             console.clear();
-            console.log("false");
+            console.log("false, you score is now: " + score);
             loadQuestion();
         }
         else if (questionPicker === 1 && timeLeft > 0) {
-            timeLeft += 1;
+            timeLeft++;
             score++;
             scoreSpace.textContent = score;
             console.clear();
@@ -153,41 +161,45 @@ function loadQuestion() {// loads questions and corresponding answers, randomly
             loadQuestion();
         }
         else if (questionPicker === 2 && timeLeft > 0) {
-            timeLeft -= 1;
+            timeLeft--;
             score--;
             scoreSpace.textContent = score;
             console.clear();
-            console.log("false");
+            console.log("false, you score is now: " + score);
             loadQuestion();
         }
         else if (questionPicker === 3 && timeLeft > 0) {
-            timeLeft -= 1;
+            timeLeft--;
             score--;
             scoreSpace.textContent = score;
             console.clear();
-            console.log("false");
+            console.log("false, you score is now: " + score);
             loadQuestion();
         }
         else if (questionPicker === 4 && timeLeft > 0) {
-            timeLeft -= 1;
+            timeLeft--;
             score--;
             scoreSpace.textContent = score;
             console.clear();
-            console.log("false");
+            console.log("false, you score is now: " + score);
             loadQuestion();
         }
+        else { }
     })
-
 }
 function unloadQuestion() {
-    askedQ.textContent = "Type your name in the box:";
-    userName.style.visibility = "visible";
+    askedQ.style.visibility = "hidden";
     op1.style.visibility = "hidden";
     op2.style.visibility = "hidden";
     op3.style.visibility = "hidden";
     aBtn.style.visibility = "hidden";
     bBtn.style.visibility = "hidden";
     cBtn.style.visibility = "hidden";
+    playerInfo.playerScore = score;
+    console.log(playerInfo);
+    localStorage.setItem("playerInfo", JSON.stringify(playerInfo));
+   
+
 }
 
 function setTime() { //this function counts down from "timeLeft"
@@ -203,23 +215,29 @@ function setTime() { //this function counts down from "timeLeft"
 }
 function timesUp() { //this displays text when timeLeft === 0
     timeEl.textContent = " ";
-    endMessage.textContent = "Times up, Friend..."
+    endMessage.textContent = "Times up, Friend... Please type your name"
     unloadQuestion();
 }
 function highscore() {//this loads the score board
-    var playersName = {
-        firstPlace: userName.value,
-        secondPlace: "",
-        thirdPlace: "",
-    }
-    console.log(userName);
-    localStorage.setItem()
+
+
 }
 startGame.addEventListener("click", function () { // this button when clicked removes start button and starts timer
     // this begins the timer 
     setTime();
     startGame.style.display = 'none';
     loadQuestion();
-});
 
+});
+submitEl.addEventListener("click", enterName);
+
+function enterName(event) { // records name entered 
+    event.preventDefault();
+    console.log(event);
+    var response = "Thanks " + nameInput.value;
+    nameResponse.textContent = response;
+    playerInfo.playerName = nameInput.value;
+
+    return;
+}
 // highscoreShow.addEventListener("click",);

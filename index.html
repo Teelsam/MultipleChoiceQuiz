@@ -19,11 +19,12 @@
     <section>
       <!--the time counter sits in this section-->
       <p id="time"></p>
+      <section class="errors">
+        <!--The out of time display message sits here-->
+        <p id="outOfTimeMsg"></p>
+      </section>
     </section>
-    <section class="errors">
-      <!--The out of time display message sits here-->
-      <p id="outOfTimeMsg"></p>
-    </section>
+
     <section class="question">
       <!--Questions load here-->
       <h3 id="askedQ"></h3>
@@ -32,7 +33,6 @@
         <li id="op2"></li>
         <li id="op3"></li>
       </ul>
-      <textarea id="userName" name="name"></textarea>
     </section>
     <section class="buttons">
       <!--button options sit here-->
@@ -41,11 +41,18 @@
       <button class="selectors" id="b">b</button>
       <button class="selectors" id="c">c</button>
     </section>
-    <section>
+
+    <section class="scoreSection">
+      <!--This section keeps score of the points -->
       <p id="scoreCard">Current score:</p>
       <p id="score"></p>
     </section>
     <section>
+      <form>
+        Name: <input placeholder="name" id="formName" />
+        <button id="submit">Submit</button>
+      </form>
+      <p id="response"></p>
       <!--this section holds scoreboard-->
       <ul class="highscores"></ul>
     </section>

@@ -24,6 +24,16 @@ header h2 {
     padding-right: 200px;
 
 }
+body{
+    border: 3px;
+    border-style: solid;
+    border-color: brown;
+}
+form{
+    display: flex;
+    padding-right: 200px;
+    justify-content: center;
+}
 .question {
     background-color:brown;
     text-align: center;
@@ -40,13 +50,11 @@ header h2 {
     list-style:lower-latin;
 }
 
-#userName{
-    visibility: hidden;
-}
 
 .buttons{/*Sets the button sections position*/
     text-align: center;
     padding-right: 200px;
+    font-size: 15px;
 
 }
 
@@ -71,6 +79,7 @@ header h2 {
 }
 #time{ /*Sets the timers style*/
     text-align: right;
+    width:25%;
     font-size: 25px;
     background-color: thistle;
     border: 5px;
@@ -83,8 +92,14 @@ header h2 {
     background-color:firebrick;
     border: 5px;
 }
+.scoreSection{
+    display: block;
+    font-size: 30px;
+    justify-content:center ;
+}
 #scoreCard{
     display: inline;
+    justify-content: center;
     color:brown;
     background-color: burlywood;
 }
@@ -96,9 +111,13 @@ header h2 {
 }
 footer{
     display: block;
+    position: absolute;
+    bottom:0;
+    left:0;
+    width: 100%;
     padding-right:160px;
-    background-color: darkblue;
+    background-color: brown;
     border: 5px;
-    color:crimson;
+    color:blanchedalmond;
     text-align: center;
 }
