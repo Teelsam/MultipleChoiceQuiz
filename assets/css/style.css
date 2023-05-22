@@ -126,13 +126,13 @@ form{
     border: 1px;
     border-style: solid;
     list-style-type: none;
+    background-color:burlywood;
 }
 footer{
     display: block;
     position: absolute;
     bottom:0;
     left:0;
-    width: 100%;
     padding-right:160px;
     background-color: brown;
     border: 5px;

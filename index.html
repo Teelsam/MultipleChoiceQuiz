@@ -13,7 +13,7 @@
       <!--The top of the site and the high score button-->
       <h1>Welcome to the Quiz</h1>
       <h2>🧩 Rest awhile and study 🦆</h2>
-      <button class="hsBtn">highscore</button>
+      <button id="hsBtn">highscore</button>
     </header>
 
     <section>
@@ -31,7 +31,6 @@
       <ul class="options">
         <li id="op1"></li>
         <li id="op2"></li>
-        <li id="op3"></li>
       </ul>
     </section>
     <section class="buttons">
@@ -40,7 +39,6 @@
       <button id="start">Start Game?</button>
       <button class="selectors" id="a">a</button>
       <button class="selectors" id="b">b</button>
-      <button class="selectors" id="c">c</button>
     </section>
 
     <section class="scoreSection">
@@ -55,10 +53,11 @@
       </form>
       <p id="response"></p>
       <!--this section holds scoreboard-->
+      <h3 id="scoreboardTitle">ScoreBoard</h3>
       <ul class="highscores">
-        <li id="firstPlace"></li>
-        <li id="secondPlace"></li>
-        <li id="thirdPlace"></li>
+        <li id="firstPlace">FirstPlace:</li>
+        <li id="secondPlace">SecondPlace:</li>
+        <li id="thirdPlace">ThirdPlace:</li>
       </ul>
     </section>
     <!--Loads our javascript-->
