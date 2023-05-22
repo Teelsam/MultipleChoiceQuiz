@@ -12,7 +12,7 @@ var op1 = document.getElementById("op1");
 var op2 = document.getElementById("op2");
 var aBtn = document.getElementById("a");
 var bBtn = document.getElementById("b");
-var cBtn = document.getElementById("c");
+var nextBtn = document.getElementById("next");
 var highscoreShow = document.getElementById("hsBtn");//this is the highscore button.
 var firstPosition = document.getElementById("firstPlace");
 var secondPosition = document.getElementById("secondPlace");
@@ -66,62 +66,64 @@ var possibleQs = [
 ];
 function loadQuestion() {// loads questions and corresponding answers, randomly
     var questionPicker = Math.floor((Math.random() * 4));
+    console.log("---------------");
     console.log("Question " + questionPicker + " was picked");//prints to log which Q was picked.
     askedQ.textContent = possibleQs[questionPicker].question;
     op1.textContent = possibleQs[questionPicker].answers.a;
     op2.textContent = possibleQs[questionPicker].answers.b;
     console.log(timeLeft + " seconds left");
 
-    aBtn.addEventListener("click", function () {
+
+    function aReturn() {
         if (questionPicker === 0 && timeLeft > 0) {// Elementids Q0 true
             timeLeft++;
-            score++;
+            //score++;
             scoreSpace.textContent = score;
             console.clear();
             console.log("correct. Your score is now: " + score);
-            loadQuestion();
+            return true;
         }
         else if (questionPicker === 1 && timeLeft > 0) {//math.floor Q1 false
             timeLeft--;
-            if (score > 0) {
-                score--;
-            }
+            // if (score > 0) {
+            //     score--;
+            // }
             scoreSpace.textContent = score;
             console.clear();
             console.log("false, you score is now: " + score);
-            loadQuestion();
+            return false;
         }
         else if (questionPicker === 2 && timeLeft > 0) {//JSON Q3 flase
             timeLeft--;
-            if (score > 0) {
-                score--;
-            }
+            // if (score > 0) {
+            //     score--;
+            // }
             scoreSpace.textContent = score;
             console.clear();
             console.log("false, you score is now: " + score);
-            loadQuestion();
+            return false;
         }
         else if (questionPicker === 3 && timeLeft > 0) {// -- Q4 true
             timeLeft++;
-            score++;
+            // score++;
             scoreSpace.textContent = score;
             console.clear();
             console.log("correct. Your score is now: " + score);
-            loadQuestion();
+            return true;
         }
         else if (questionPicker === 4 && timeLeft > 0) {//setInterval Q5 true
             timeLeft++;
-            score++;
+            // score++;
             scoreSpace.textContent = score;
             console.clear();
             console.log("correct. Your score is now: " + score);
-            loadQuestion();
+            return true;
         }
         else { }
-    })
 
-    bBtn.addEventListener("click", function () {//// Elementids Q0 false
-        if (questionPicker === 0 && timeLeft > 0) {
+    }
+    function bReturn() {
+        if (questionPicker === 0 && timeLeft > 0) {//// Elementids Q0 false
             timeLeft--;
             if (score > 0) {
                 score--;
@@ -129,7 +131,7 @@ function loadQuestion() {// loads questions and corresponding answers, randomly
             scoreSpace.textContent = score;
             console.clear();
             console.log("false, you score is now: " + score);
-            loadQuestion();
+            return false;
         }
         else if (questionPicker === 1 && timeLeft > 0) {////math.floor Q1 true
             timeLeft++;
@@ -137,7 +139,7 @@ function loadQuestion() {// loads questions and corresponding answers, randomly
             scoreSpace.textContent = score;
             console.clear();
             console.log("correct, you score is now: " + score);
-            loadQuestion();
+            return true;
         }
         else if (questionPicker === 2 && timeLeft > 0) {////JSON Q3 true
             timeLeft += 1;
@@ -145,7 +147,7 @@ function loadQuestion() {// loads questions and corresponding answers, randomly
             scoreSpace.textContent = score;
             console.clear();
             console.log("correct. Your score is now: " + score);
-            loadQuestion();
+            return true;
         }
         else if (questionPicker === 3 && timeLeft > 0) {//// -- Q4 false
             timeLeft--;
@@ -155,23 +157,43 @@ function loadQuestion() {// loads questions and corresponding answers, randomly
             scoreSpace.textContent = score;
             console.clear();
             console.log("false, you score is now: " + score);
-            loadQuestion();
+            return false;
         }
         else if (questionPicker === 4 && timeLeft > 0) {////setInterval Q5 false
             timeLeft--;
             if (score > 0) {
                 score--;
             }
-            scoreSpace.textContent = score;
             console.clear();
             console.log("false, you score is now: " + score);
-            loadQuestion();
+            return false;
         }
         else { }
+    }
+    aBtn.addEventListener("click", function () {
+        aReturn();
+    });
+    bBtn.addEventListener("click", function () {
+        bReturn();
+    });
+    nextBtn.addEventListener("click", function () {
+        loadQuestion();
     })
+    if (aReturn == true) {
+        score++;
 
+    }
+    else if (aReturn == false) {
+        score--;
+    }
+    else if (bReturn == true) {
+        score++;
+    }
+    else if (bReturn == false) {
+        score--;
+    }
 }
-function unloadQuestion() {
+function unloadQuestion() { //hides quiz content and displays playerinfo in console
     askedQ.style.visibility = "hidden";
     op1.style.visibility = "hidden";
     op2.style.visibility = "hidden";
@@ -210,6 +232,7 @@ function timesUp() { //this displays text when timeLeft === 0
     endMessage.textContent = "Times up, Friend... ";
 
     unloadQuestion();
+    highscore();
 
 
 
@@ -219,24 +242,26 @@ function highscore() {//this loads the score board
     if (scoreInfo.playerScore > firstPlaceInfo.firstPlaceScore) {
         firstPlaceInfo.firstPlaceScore = scoreInfo.playerScore;
         firstPlaceInfo.firstPlace = scoreInfo.playerName;
-        firstPosition.textContent = "First Place:" + firstPlaceInfo.firstPlace + " " + firstPlaceInfo.firstPlaceScore;
+
     }
     else if (scoreInfo.playerScore > secondPlaceInfo.secondPlaceScore && scoreInfo.playerScore < firstPlaceInfo.firstPlaceScore) {
         secondPlaceInfo.secondPlaceScore = scoreInfo.playerScore;
-        secondPlaceInfo.secondPlace = secoreInfo.playerName;
-        secondPosition.textContent = "Second Place:" + secondPlaceInfo.secondPlace + " " + secondPlaceInfo.secondPlaceScore;
+        secondPlaceInfo.secondPlace = scoreInfo.playerName;
+
     }
     else if (scoreInfo.playerScore > thirdPlaceInfo.playerScore && scoreInfo.playerScore < secondPlaceInfo.secondPlaceScore) {
         thirdPlaceInfo.thirdPlaceScore = scoreInfo.playerScore;
         thirdPlaceInfo.thirdPlace = scoreInfo.playerName;
-        thirdPosition.textContent = "Third Place:" + thirdPlaceInfo.thirdPlace + " " + thirdPlaceInfo.thirdPlaceScore;
     }
     else {
         return;
     }
-
-
-
+    firstPosition.textContent = "First Place:" + firstPlaceInfo.firstPlace + " " + firstPlaceInfo.firstPlaceScore;
+    secondPosition.textContent = "Second Place:" + secondPlaceInfo.secondPlace + " " + secondPlaceInfo.secondPlaceScore;
+    thirdPosition.textContent = "Third Place:" + thirdPlaceInfo.thirdPlace + " " + thirdPlaceInfo.thirdPlaceScore;
+    localStorage.setItem("firstPlaceInfo", JSON.stringify(firstPlaceInfo));
+    localStorage.setItem("secondPlaceInfo", JSON.stringify(secondPlaceInfo));
+    localStorage.setItem("thirdPlaceInfo", JSON.stringify(thirdPlaceInfo));
 
 }
 startGame.addEventListener("click", function () { // this button when clicked removes start button and starts timer
