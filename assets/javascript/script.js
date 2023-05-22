@@ -14,13 +14,15 @@ var op2 = document.getElementById("op2");
 var aBtn = document.getElementById("a");
 var bBtn = document.getElementById("b");
 var nextBtn = document.getElementById("next");
+var answerCheck = document.getElementById("answerCheck");
 var highscoreShow = document.getElementById("hsBtn");//this is the highscore button.
 var firstPosition = document.getElementById("firstPlace");
 var secondPosition = document.getElementById("secondPlace");
 var thirdPosition = document.getElementById("thirdPlace");
 var scoreBoardTitle = document.getElementById("scoreboardTitle");
-var scoreSpace = document.getElementById("score");
+var scoreCard = document.getElementById("scoreCard");
 var score = 0;
+var questionPicker = 0;
 
 var playerInfo = { //object holds current users name and score
     playerName: "",
@@ -57,134 +59,95 @@ var possibleQs = [
         answers: { a: "subtracts by 1", b: "turns an object into a string", }, solution: "a"
     },
     {//Q4 a
-        question: "How often does setInterval (function(), 2000 refresh?",
+        question: "How often does setInterval (function(), 2000) refresh?",
         answers: { a: "every 2 seconds", b: "every 20 seconds", }, solution: "a"
     }
 
 ];
-function loadQuestion() {// loads questions and corresponding answers, randomly
-    var questionPicker = Math.floor((Math.random() * 4));
+function loadQuestion() {// loads questions and corresponding answers
+    //WHY 
+    //IS
+    // my counter 
+    //wrong
     console.log("---------------");
-    console.log("Question " + questionPicker + " was picked");//prints to log which Q was picked.
+    console.log("Question " + [questionPicker] + " was picked");//prints to log which Q was picked.
     askedQ.textContent = possibleQs[questionPicker].question;
     op1.textContent = possibleQs[questionPicker].answers.a;
     op2.textContent = possibleQs[questionPicker].answers.b;
-    console.log(timeLeft + " seconds left");
+    console.log("Question " + questionPicker + " was loaded.");
 
 
-    function aReturn() {
-        if (questionPicker === 0 && timeLeft > 0) {// Elementids Q0 true
-            //score++;
-            scoreSpace.textContent = score;
-            console.clear();
-            console.log("correct. Your score is now: " + score);
-            return true;
-        }
-        else if (questionPicker === 1 && timeLeft > 0) {//math.floor Q1 false
-            timeLeft--;
-            // if (score > 0) {
-            //     score--;
-            // }
-            scoreSpace.textContent = score;
-            console.clear();
-            console.log("false, you score is now: " + score);
-            return false;
-        }
-        else if (questionPicker === 2 && timeLeft > 0) {//JSON Q3 flase
-            timeLeft--;
-            // if (score > 0) {
-            //     score--;
-            // }
-            scoreSpace.textContent = score;
-            console.clear();
-            console.log("false, you score is now: " + score);
-            return false;
-        }
-        else if (questionPicker === 3 && timeLeft > 0) {// -- Q4 true
-            // score++;
-            scoreSpace.textContent = score;
-            console.clear();
-            console.log("correct. Your score is now: " + score);
-            return true;
-        }
-        else if (questionPicker === 4 && timeLeft > 0) {//setInterval Q5 true
-            // score++;
-            scoreSpace.textContent = score;
-            console.clear();
-            console.log("correct. Your score is now: " + score);
-            return true;
-        }
-        else { }
-
-    }
-    function bReturn() {
-        if (questionPicker === 0 && timeLeft > 0) {//// Elementids Q0 false
-            timeLeft--;
-            // if (score > 0) {
-            //     score--;
-            // }
-            scoreSpace.textContent = score;
-            console.clear();
-            console.log("false, you score is now: " + score);
-            return false;
-        }
-        else if (questionPicker === 1 && timeLeft > 0) {////math.floor Q1 true
-            // score++;
-            scoreSpace.textContent = score;
-            console.clear();
-            console.log("correct, you score is now: " + score);
-            return true;
-        }
-        else if (questionPicker === 2 && timeLeft > 0) {////JSON Q3 true
-            // score++;
-            scoreSpace.textContent = score;
-            console.clear();
-            console.log("correct. Your score is now: " + score);
-            return true;
-        }
-        else if (questionPicker === 3 && timeLeft > 0) {//// -- Q4 false
-            timeLeft--;
-            // if (score > 0) {
-            //     score--;
-            // }
-            scoreSpace.textContent = score;
-            console.clear();
-            console.log("false, you score is now: " + score);
-            return false;
-        }
-        else if (questionPicker === 4 && timeLeft > 0) {////setInterval Q5 false
-            timeLeft--;
-            // if (score > 0) {
-            //     score--;
-            // }
-            console.clear();
-            console.log("false, you score is now: " + score);
-            return false;
-        }
-        else { }
-    }
     aBtn.addEventListener("click", function () {
-        aReturn();
+        while (questionPicker === 0) { //Q0 a is correct
+            score = score + 1;
+            scoreCard.innerText = "Current Score:" + score;
+            answerCheck.innerText = "Correct!"
+            answerCheck.style.color = "green";
+            return;
+        }
+        while (questionPicker === 1) {//Q1 a is wrong
+            timeLeft--;
+            return;
+        }
+        while (questionPicker === 2) {//Q2  a is wrong
+            timeLeft--;
+            return;
+        }
+        while (questionPicker === 3) {//Q3 a is correct
+            score = score + 1;
+            scoreCard.innerText = "Current Score:" + score;
+            answerCheck.innerText = "Correct!"
+            answerCheck.style.color = "green";
+            return;
+        }
+        while (questionPicker === 4) {//Q4 a is correct
+            score = score + 1;
+            scoreCard.innerText = "Current Score:" + score;
+            answerCheck.innerText = "Correct!"
+            answerCheck.style.color = "green";
+            return;
+        }
     });
     bBtn.addEventListener("click", function () {
-        bReturn();
-    });
-    nextBtn.addEventListener("click", function () {
-        loadQuestion();
+        while (questionPicker === 0) {//Q0  b is wrong
+            timeLeft--;
+            return;
+        }
+        while (questionPicker === 1) {//Q1 b is correct
+            score = score + 1;
+            scoreCard.innerText = "Current Score:" + score;
+            answerCheck.innerText = "Correct!"
+            answerCheck.style.color = "green";
+            return;
+        }
+        while (questionPicker === 2) {//Q2 b is correct
+            score = score + 1;
+            scoreCard.innerText = "Current Score:" + score;
+            answerCheck.innerText = "Correct!"
+            answerCheck.style.color = "green";
+            return;
+        }
+        while (questionPicker === 3) {//Q3 b is wrong
+            timeLeft--;
+            return;
+        }
+        while (questionPicker === 4) {//Q4 b is wrong
+            timeLeft--;
+            return;
+        }
     })
-    if (aReturn == true) {
-        score++;
 
-    }
-    else if (aReturn == false) {
-        score--;
-    }
-    else if (bReturn == true) {
-        score++;
-    }
-    else if (bReturn == false) {
-        score--;
-    }
+    nextBtn.addEventListener("click", function () {
+        if (questionPicker < 5) {
+            questionPicker++;
+        }
+        answerCheck.innerText = "";
+        answerCheck.style.color = "";
+        loadQuestion();
+
+    })
+
+
 }
 function unloadQuestion() { //hides quiz content and displays playerinfo in console
     askedQ.style.visibility = "hidden";
@@ -237,6 +200,7 @@ function highscore() {//this loads the score board
     secondPosition.style.visibility = "visible"
     thirdPosition.style.visibility = "visible";
     var scoreInfo = JSON.parse(localStorage.getItem("playerInfo"));
+    console.log("this is scoreinfo " + scoreInfo);
     if (scoreInfo.playerScore > firstPlaceInfo.firstPlaceScore) {
         firstPlaceInfo.firstPlaceScore = scoreInfo.playerScore;
         firstPlaceInfo.firstPlace = scoreInfo.playerName;

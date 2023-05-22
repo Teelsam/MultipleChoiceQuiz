@@ -33,6 +33,24 @@ form{
     display: flex;
     padding-right: 200px;
     justify-content: center;
+    width: 400px;
+    position: absolute;
+    left: 400px;
+}
+#time{ /*Sets the timers style*/
+    text-align: right;
+    width:25%;
+    font-size: 25px;
+    background-color: thistle;
+    border: 5px;
+}
+#outOfTimeMsg{
+    text-align: center;
+    color:lavender;
+    padding-right:  180px;
+    font-size: 25px;
+    background-color:firebrick;
+    border: 5px;
 }
 .question {
     background-color:lavender;
@@ -106,20 +124,20 @@ form{
     color:blanchedalmond;
     box-shadow: 5px 8px 2px;
 }
-#time{ /*Sets the timers style*/
-    text-align: right;
-    width:25%;
-    font-size: 25px;
-    background-color: thistle;
-    border: 5px;
+.correctFalseText #correctText{
+    display: flex;
+    position:relative;
+    right: 20px;
+    width: 175px;
+    justify-content: center;
 }
-#outOfTimeMsg{
-    text-align: center;
-    color:lavender;
-    padding-right:  180px;
-    font-size: 25px;
-    background-color:firebrick;
-    border: 5px;
+#correctText{
+    background-color: forestgreen;
+    color:white;
+}
+#falseText{
+    background-color: darkred;
+    color:white;
 }
 .scoreSection{
     display: block;
@@ -133,10 +151,21 @@ form{
     background-color: burlywood;
 }
 #score {
-    display:inline;
+    display:block;
+    visibility: visible;
     color:crimson;
     border: 2px;
+    position:absolute;
+    left: 200px;
+    width: auto;
     background-color:peachpuff;
+}
+#answerCheck{
+    width: 200px;
+    position: relative;
+    left:300px;
+    justify-content: center;
+    background-color: cadetblue;
 }
 .highscores, #scoreboardTitle {
     visibility: hidden;
@@ -149,17 +178,4 @@ form{
     list-style-type: none;
     background-color:burlywood;
     color:brown;
-}
-footer{
-    display: block;
-    position: absolute;
-    bottom:0;
-    left:0;
-    height: auto;
-    width:auto;
-    padding-right:160px;
-    background-color: brown;
-    border: 5px;
-    color:blanchedalmond;
-    text-align: center;
 }
