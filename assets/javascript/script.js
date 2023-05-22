@@ -78,34 +78,39 @@ function loadQuestion() {// loads questions and corresponding answers
 
 
     aBtn.addEventListener("click", function () {
-        while (questionPicker === 0) { //Q0 a is correct
-            score = score + 1;
+        while (questionPicker == 0) { //Q0 a is correct
+            score++;
+            console.log("score now:" + score);
             scoreCard.innerText = "Current Score:" + score;
             answerCheck.innerText = "Correct!"
             answerCheck.style.color = "green";
             return;
         }
-        while (questionPicker === 1) {//Q1 a is wrong
+        while (questionPicker == 1) {//Q1 a is wrong
             timeLeft--;
+            console.log("score now:" + score);
             answerCheck.innerText = "False";
             answerCheck.style.color = "red";
             return;
         }
-        while (questionPicker === 2) {//Q2  a is wrong
+        while (questionPicker == 2) {//Q2  a is wrong
             timeLeft--;
+            console.log("score now:" + score);
             answerCheck.innerText = "False";
             answerCheck.style.color = "red";
             return;
         }
-        while (questionPicker === 3) {//Q3 a is correct
-            score = score + 1;
+        while (questionPicker == 3) {//Q3 a is correct
+            score++;
+            console.log("score now:" + score);
             scoreCard.innerText = "Current Score:" + score;
             answerCheck.innerText = "Correct!"
             answerCheck.style.color = "green";
             return;
         }
-        while (questionPicker === 4) {//Q4 a is correct
-            score = score + 1;
+        while (questionPicker == 4) {//Q4 a is correct
+            score++;
+            console.log("score now:" + score);
             scoreCard.innerText = "Current Score:" + score;
             answerCheck.innerText = "Correct!"
             answerCheck.style.color = "green";
@@ -113,34 +118,39 @@ function loadQuestion() {// loads questions and corresponding answers
         }
     });
     bBtn.addEventListener("click", function () {
-        while (questionPicker === 0) {//Q0  b is wrong
-            --timeLeft;
+        while (questionPicker == 0) {//Q0  b is wrong
+            timeLeft--;
+            console.log("score now:" + score);
             answerCheck.innerText = "False";
             answerCheck.style.color = "red";
             return;
         }
-        while (questionPicker === 1) {//Q1 b is correct
-            score = score + 1;
+        while (questionPicker == 1) {//Q1 b is correct
+            score++;
+            console.log("score now:" + score);
             scoreCard.innerText = "Current Score:" + score;
             answerCheck.innerText = "Correct!"
             answerCheck.style.color = "green";
             return;
         }
-        while (questionPicker === 2) {//Q2 b is correct
-            score = score + 1;
+        while (questionPicker == 2) {//Q2 b is correct
+            score++;
+            console.log("score now:" + score);
             scoreCard.innerText = "Current Score:" + score;
             answerCheck.innerText = "Correct!"
             answerCheck.style.color = "green";
             return;
         }
-        while (questionPicker === 3) {//Q3 b is wrong
+        while (questionPicker == 3) {//Q3 b is wrong
             timeLeft--;
+            console.log("score now:" + score);
             answerCheck.innerText = "False";
             answerCheck.style.color = "red";
             return;
         }
-        while (questionPicker === 4) {//Q4 b is wrong
+        while (questionPicker == 4) {//Q4 b is wrong
             timeLeft--;
+            console.log("score now:" + score);
             answerCheck.innerText = "False";
             answerCheck.style.color = "red";
             return;
@@ -149,7 +159,7 @@ function loadQuestion() {// loads questions and corresponding answers
 
     nextBtn.addEventListener("click", function () {
         if (questionPicker < 5) {
-            ++questionPicker;
+            questionPicker++;
         }
         answerCheck.innerText = "";
         answerCheck.style.color = "";
