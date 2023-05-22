@@ -35,18 +35,30 @@ form{
     justify-content: center;
 }
 .question {
-    background-color:brown;
+    background-color:lavender;
+    border: 5px;
+    border-style: double;
+    border-color: crimson;
     text-align: center;
+    width:auto;
+    position:relative;
+    height: 250px;
     justify-content: center;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    color: blanchedalmond;
+    color:crimson;
+}
+.question h3{
+    font-size: 50px;
 }
 .options  {
+    visibility: hidden;
     display: block;
     padding: 10px;
+    padding-left: 250px;
     margin: 10px;
     text-align: left;
-    font-size: 15px;
+    justify-content: center;
+    font-size: 30px;
     list-style:lower-latin;
 }
 
@@ -56,6 +68,12 @@ form{
     padding-right: 200px;
     font-size: 15px;
 
+}
+#next{
+    font-size: 20px;
+}
+#next:hover{
+    background-color: chartreuse;
 }
 .buttons p {
     display: flex;

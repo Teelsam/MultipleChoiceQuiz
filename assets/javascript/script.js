@@ -8,6 +8,7 @@ var nameResponse = document.getElementById("response");
 var nameWarning = document.getElementById("nameWarning");
 var askedQ = document.getElementById("askedQ");
 var options = document.getElementById("options");
+var questionZone = document.getElementById("questionZone");
 var op1 = document.getElementById("op1");
 var op2 = document.getElementById("op2");
 var aBtn = document.getElementById("a");
@@ -73,7 +74,6 @@ function loadQuestion() {// loads questions and corresponding answers, randomly
 
     function aReturn() {
         if (questionPicker === 0 && timeLeft > 0) {// Elementids Q0 true
-            timeLeft++;
             //score++;
             scoreSpace.textContent = score;
             console.clear();
@@ -101,7 +101,6 @@ function loadQuestion() {// loads questions and corresponding answers, randomly
             return false;
         }
         else if (questionPicker === 3 && timeLeft > 0) {// -- Q4 true
-            timeLeft++;
             // score++;
             scoreSpace.textContent = score;
             console.clear();
@@ -109,7 +108,6 @@ function loadQuestion() {// loads questions and corresponding answers, randomly
             return true;
         }
         else if (questionPicker === 4 && timeLeft > 0) {//setInterval Q5 true
-            timeLeft++;
             // score++;
             scoreSpace.textContent = score;
             console.clear();
@@ -131,7 +129,6 @@ function loadQuestion() {// loads questions and corresponding answers, randomly
             return false;
         }
         else if (questionPicker === 1 && timeLeft > 0) {////math.floor Q1 true
-            timeLeft++;
             // score++;
             scoreSpace.textContent = score;
             console.clear();
@@ -139,7 +136,6 @@ function loadQuestion() {// loads questions and corresponding answers, randomly
             return true;
         }
         else if (questionPicker === 2 && timeLeft > 0) {////JSON Q3 true
-            timeLeft += 1;
             // score++;
             scoreSpace.textContent = score;
             console.clear();
@@ -272,6 +268,8 @@ startGame.addEventListener("click", function () { // this button when clicked re
     setTime();
     startGame.style.display = 'none';
     nameWarning.style.display = "none";
+    op1.style.visibility = "visible";
+    op2.style.visibility = "visible";
     loadQuestion();
 
 });
