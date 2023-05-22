@@ -165,7 +165,7 @@ form{
     position: relative;
     left:300px;
     justify-content: center;
-    background-color: cadetblue;
+    background-color:white;
 }
 .highscores, #scoreboardTitle {
     visibility: hidden;

@@ -87,10 +87,14 @@ function loadQuestion() {// loads questions and corresponding answers
         }
         while (questionPicker === 1) {//Q1 a is wrong
             timeLeft--;
+            answerCheck.innerText = "False";
+            answerCheck.style.color = "red";
             return;
         }
         while (questionPicker === 2) {//Q2  a is wrong
             timeLeft--;
+            answerCheck.innerText = "False";
+            answerCheck.style.color = "red";
             return;
         }
         while (questionPicker === 3) {//Q3 a is correct
@@ -110,7 +114,9 @@ function loadQuestion() {// loads questions and corresponding answers
     });
     bBtn.addEventListener("click", function () {
         while (questionPicker === 0) {//Q0  b is wrong
-            timeLeft--;
+            --timeLeft;
+            answerCheck.innerText = "False";
+            answerCheck.style.color = "red";
             return;
         }
         while (questionPicker === 1) {//Q1 b is correct
@@ -129,17 +135,21 @@ function loadQuestion() {// loads questions and corresponding answers
         }
         while (questionPicker === 3) {//Q3 b is wrong
             timeLeft--;
+            answerCheck.innerText = "False";
+            answerCheck.style.color = "red";
             return;
         }
         while (questionPicker === 4) {//Q4 b is wrong
             timeLeft--;
+            answerCheck.innerText = "False";
+            answerCheck.style.color = "red";
             return;
         }
     })
 
     nextBtn.addEventListener("click", function () {
         if (questionPicker < 5) {
-            questionPicker++;
+            ++questionPicker;
         }
         answerCheck.innerText = "";
         answerCheck.style.color = "";
