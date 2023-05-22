@@ -17,7 +17,7 @@ var highscoreShow = document.getElementById("hsBtn");//this is the highscore but
 var firstPosition = document.getElementById("firstPlace");
 var secondPosition = document.getElementById("secondPlace");
 var thirdPosition = document.getElementById("thirdPlace");
-
+var scoreBoardTitle = document.getElementById("scoreboardTitle");
 var scoreSpace = document.getElementById("score");
 var score = 0;
 
@@ -37,9 +37,6 @@ var thirdPlaceInfo = {//holds 3rd place score and name
     thirdPlace: "",
     thirdPlaceScore: 0,
 };
-
-
-
 
 var possibleQs = [
     {//Q0 a
@@ -125,9 +122,9 @@ function loadQuestion() {// loads questions and corresponding answers, randomly
     function bReturn() {
         if (questionPicker === 0 && timeLeft > 0) {//// Elementids Q0 false
             timeLeft--;
-            if (score > 0) {
-                score--;
-            }
+            // if (score > 0) {
+            //     score--;
+            // }
             scoreSpace.textContent = score;
             console.clear();
             console.log("false, you score is now: " + score);
@@ -135,7 +132,7 @@ function loadQuestion() {// loads questions and corresponding answers, randomly
         }
         else if (questionPicker === 1 && timeLeft > 0) {////math.floor Q1 true
             timeLeft++;
-            score++;
+            // score++;
             scoreSpace.textContent = score;
             console.clear();
             console.log("correct, you score is now: " + score);
@@ -143,7 +140,7 @@ function loadQuestion() {// loads questions and corresponding answers, randomly
         }
         else if (questionPicker === 2 && timeLeft > 0) {////JSON Q3 true
             timeLeft += 1;
-            score++;
+            // score++;
             scoreSpace.textContent = score;
             console.clear();
             console.log("correct. Your score is now: " + score);
@@ -151,9 +148,9 @@ function loadQuestion() {// loads questions and corresponding answers, randomly
         }
         else if (questionPicker === 3 && timeLeft > 0) {//// -- Q4 false
             timeLeft--;
-            if (score > 0) {
-                score--;
-            }
+            // if (score > 0) {
+            //     score--;
+            // }
             scoreSpace.textContent = score;
             console.clear();
             console.log("false, you score is now: " + score);
@@ -161,9 +158,9 @@ function loadQuestion() {// loads questions and corresponding answers, randomly
         }
         else if (questionPicker === 4 && timeLeft > 0) {////setInterval Q5 false
             timeLeft--;
-            if (score > 0) {
-                score--;
-            }
+            // if (score > 0) {
+            //     score--;
+            // }
             console.clear();
             console.log("false, you score is now: " + score);
             return false;
@@ -237,7 +234,12 @@ function timesUp() { //this displays text when timeLeft === 0
 
 
 }
+
 function highscore() {//this loads the score board 
+    scoreBoardTitle.style.visibility = "visible";
+    firstPosition.style.visibility = "visible";
+    secondPosition.style.visibility = "visible"
+    thirdPosition.style.visibility = "visible";
     var scoreInfo = JSON.parse(localStorage.getItem("playerInfo"));
     if (scoreInfo.playerScore > firstPlaceInfo.firstPlaceScore) {
         firstPlaceInfo.firstPlaceScore = scoreInfo.playerScore;
@@ -256,6 +258,7 @@ function highscore() {//this loads the score board
     else {
         return;
     }
+    //Below displays name and score of user into the score board.
     firstPosition.textContent = "First Place:" + firstPlaceInfo.firstPlace + " " + firstPlaceInfo.firstPlaceScore;
     secondPosition.textContent = "Second Place:" + secondPlaceInfo.secondPlace + " " + secondPlaceInfo.secondPlaceScore;
     thirdPosition.textContent = "Third Place:" + thirdPlaceInfo.thirdPlace + " " + thirdPlaceInfo.thirdPlaceScore;
@@ -265,14 +268,14 @@ function highscore() {//this loads the score board
 
 }
 startGame.addEventListener("click", function () { // this button when clicked removes start button and starts timer
-    // this begins the timer 
+    // this begins the timer and hides starting info
     setTime();
     startGame.style.display = 'none';
     nameWarning.style.display = "none";
     loadQuestion();
 
 });
-submitEl.addEventListener("click", enterName);
+submitEl.addEventListener("click", enterName);// records players name
 
 
-highscoreShow.addEventListener("click", highscore);
+highscoreShow.addEventListener("click", highscore);//displays highscore scoreboard

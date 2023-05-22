@@ -120,6 +120,9 @@ form{
     border: 2px;
     background-color:peachpuff;
 }
+.highscores, #scoreboardTitle {
+    visibility: hidden;
+}
 .highscores li {
     padding: 5px;
     margin: 2px;
@@ -127,12 +130,15 @@ form{
     border-style: solid;
     list-style-type: none;
     background-color:burlywood;
+    color:brown;
 }
 footer{
     display: block;
     position: absolute;
     bottom:0;
     left:0;
+    height: auto;
+    width:auto;
     padding-right:160px;
     background-color: brown;
     border: 5px;
