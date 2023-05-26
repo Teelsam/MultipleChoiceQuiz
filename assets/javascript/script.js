@@ -1,6 +1,6 @@
 var startGame = document.getElementById("start");
 var timeEl = document.getElementById("time");
-var timeLeft = 15; // Sets timer starting time.
+var timeLeft = 60; // Sets timer starting time.
 var endMessage = document.getElementById("outOfTimeMsg");
 var submitEl = document.querySelector("#submit");
 var nameInput = document.querySelector("#formName");
@@ -41,134 +41,25 @@ var thirdPlaceInfo = {//holds 3rd place score and name
     thirdPlaceScore: 0,
 };
 
-var possibleQs = [
-    {//Q0 a
-        question: "What does getElementById look for?",
-        answers: { a: "ids", b: "classes", }, solution: "a"
-    },
-    {//Q1 c 
-        question: "What does Math.floor do?",
-        answers: { a: "gives a random number", b: "rounds down number" }, solution: "b"
-    },
-    {//Q2 b
-        question: "What does JSON.stringify() do?",
-        answers: { a: "multiplies arguments", b: "turns an object into a string", }, solution: "b"
-    },
-    {//Q3 a
-        question: "What does -- do to an number?",
-        answers: { a: "subtracts by 1", b: "turns an object into a string", }, solution: "a"
-    },
-    {//Q4 a
-        question: "How often does setInterval (function(), 2000) refresh?",
-        answers: { a: "every 2 seconds", b: "every 20 seconds", }, solution: "a"
-    }
+var possibleQs = ["What does getElementById look for?", "What does Math.floor do?", "What does JSON.stringify() do?", "What does -- do to an number?", "How often does setInterval (function(), 2000) refresh?",];
+var possibleAs = ["ids", "rounds number down", "turns an object into a string", "subtracts by 1", "every 2 seconds"];
+var decoyAs = ["classes", "gives a random number", "multiplies arguments", "turns an object into a string", "every 20 seconds"];
 
-];
+
+
+
 function loadQuestion() {// loads questions and corresponding answers
-    //WHY 
-    //IS
-    // my counter 
-    //wrong
+
     console.log("---------------");
     console.log("Question " + [questionPicker] + " was picked");//prints to log which Q was picked.
-    askedQ.textContent = possibleQs[questionPicker].question;
-    op1.textContent = possibleQs[questionPicker].answers.a;
-    op2.textContent = possibleQs[questionPicker].answers.b;
+    askedQ.textContent = possibleQs[questionPicker];
+    op1.textContent = possibleAs[questionPicker];
+    op2.textContent = decoyAs[questionPicker];
     console.log("Question " + questionPicker + " was loaded.");
 
 
-    aBtn.addEventListener("click", function () {
-        while (questionPicker == 0) { //Q0 a is correct
-            score++;
-            console.log("score now:" + score);
-            scoreCard.innerText = "Current Score:" + score;
-            answerCheck.innerText = "Correct!"
-            answerCheck.style.color = "green";
-            return;
-        }
-        while (questionPicker == 1) {//Q1 a is wrong
-            timeLeft--;
-            console.log("score now:" + score);
-            answerCheck.innerText = "False";
-            answerCheck.style.color = "red";
-            return;
-        }
-        while (questionPicker == 2) {//Q2  a is wrong
-            timeLeft--;
-            console.log("score now:" + score);
-            answerCheck.innerText = "False";
-            answerCheck.style.color = "red";
-            return;
-        }
-        while (questionPicker == 3) {//Q3 a is correct
-            score++;
-            console.log("score now:" + score);
-            scoreCard.innerText = "Current Score:" + score;
-            answerCheck.innerText = "Correct!"
-            answerCheck.style.color = "green";
-            return;
-        }
-        while (questionPicker == 4) {//Q4 a is correct
-            score++;
-            console.log("score now:" + score);
-            scoreCard.innerText = "Current Score:" + score;
-            answerCheck.innerText = "Correct!"
-            answerCheck.style.color = "green";
-            return;
-        }
-    });
-    bBtn.addEventListener("click", function () {
-        while (questionPicker == 0) {//Q0  b is wrong
-            timeLeft--;
-            console.log("score now:" + score);
-            answerCheck.innerText = "False";
-            answerCheck.style.color = "red";
-            return;
-        }
-        while (questionPicker == 1) {//Q1 b is correct
-            score++;
-            console.log("score now:" + score);
-            scoreCard.innerText = "Current Score:" + score;
-            answerCheck.innerText = "Correct!"
-            answerCheck.style.color = "green";
-            return;
-        }
-        while (questionPicker == 2) {//Q2 b is correct
-            score++;
-            console.log("score now:" + score);
-            scoreCard.innerText = "Current Score:" + score;
-            answerCheck.innerText = "Correct!"
-            answerCheck.style.color = "green";
-            return;
-        }
-        while (questionPicker == 3) {//Q3 b is wrong
-            timeLeft--;
-            console.log("score now:" + score);
-            answerCheck.innerText = "False";
-            answerCheck.style.color = "red";
-            return;
-        }
-        while (questionPicker == 4) {//Q4 b is wrong
-            timeLeft--;
-            console.log("score now:" + score);
-            answerCheck.innerText = "False";
-            answerCheck.style.color = "red";
-            return;
-        }
-    })
-
-    nextBtn.addEventListener("click", function () {
-        if (questionPicker < 5) {
-            questionPicker++;
-        }
-        answerCheck.innerText = "";
-        answerCheck.style.color = "";
-        loadQuestion();
-
-    })
-
-
 }
+
 function unloadQuestion() { //hides quiz content and displays playerinfo in console
     askedQ.style.visibility = "hidden";
     op1.style.visibility = "hidden";
@@ -209,9 +100,6 @@ function timesUp() { //this displays text when timeLeft === 0
 
     unloadQuestion();
     highscore();
-
-
-
 }
 
 function highscore() {//this loads the score board 
