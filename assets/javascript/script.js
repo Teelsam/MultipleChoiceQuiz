@@ -52,21 +52,29 @@ function increaseQPicker() {
 
     return;
 }
-
-function aButtonPressed() {
+function scoreAdditioner() {
+    score++;
+    scoreCard.textContent = "Current Score:" + score;
+}
+function scoreSubtractioner() {
+    score--;
+    scoreCard.textContent = "Current Score:" + score;
+}
+function aButtonPressed() {// right choice selected.
     if (possibleQs == questionPicker && possibleAs == questionPicker) {
         answerCheck.style.color = "green";
         answerCheck.textContent = "correct!";
-        score++;
-        scoreCard.textContent = "Current Score:" + score;
+
     }
     increaseQPicker();
     loadQuestion();
+    scoreAdditioner();
 }
-function bButtonPressed() {
+function bButtonPressed() {// wrong choice selected.
     answerCheck.style.color = "red";
     answerCheck.textContent = "false!";
     timeLeft -= 5;
+    scoreSubtractioner();
 
 
 }
@@ -81,8 +89,9 @@ function loadQuestion() {// loads questions and corresponding answers
         op1.textContent = possibleAs[questionPicker];
         op2.textContent = possibleBs[questionPicker];
         console.log("Question " + questionPicker + " was loaded.");
+        console.log("the score is now:" + score);
     }
-    else if (questionPicker >= 5) {
+    else if (questionPicker >= 5) { //ends game when all questions have been cycled through.
         timeEl.textContent = " ";
         endMessage.textContent = "Thats all the questions!";
         unloadQuestion()
