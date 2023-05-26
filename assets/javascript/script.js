@@ -13,7 +13,7 @@ var op1 = document.getElementById("op1");
 var op2 = document.getElementById("op2");
 var aBtn = document.getElementById("a");
 var bBtn = document.getElementById("b");
-var nextBtn = document.getElementById("next");
+// var nextBtn = document.getElementById("next");
 var answerCheck = document.getElementById("answerCheck");
 var highscoreShow = document.getElementById("hsBtn");//this is the highscore button.
 var firstPosition = document.getElementById("firstPlace");
@@ -43,21 +43,50 @@ var thirdPlaceInfo = {//holds 3rd place score and name
 
 var possibleQs = ["What does getElementById look for?", "What does Math.floor do?", "What does JSON.stringify() do?", "What does -- do to an number?", "How often does setInterval (function(), 2000) refresh?",];
 var possibleAs = ["ids", "rounds number down", "turns an object into a string", "subtracts by 1", "every 2 seconds"];
-var decoyAs = ["classes", "gives a random number", "multiplies arguments", "turns an object into a string", "every 20 seconds"];
+var possibleBs = ["classes", "gives a random number", "multiplies arguments", "turns an object into a string", "every 20 seconds"];
+
+function increaseQPicker() {
+    if (questionPicker < 5) {
+        questionPicker++;
+    }
+
+    return;
+}
+
+function aButtonPressed() {
+    if (possibleQs == questionPicker && possibleAs == questionPicker) {
+        answerCheck.style.color = "green";
+        answerCheck.textContent = "correct!";
+        score++;
+        scoreCard.textContent = "Current Score:" + score;
+    }
+    increaseQPicker();
+    loadQuestion();
+}
+function bButtonPressed() {
+    answerCheck.style.color = "red";
+    answerCheck.textContent = "false!";
+    timeLeft -= 5;
 
 
-
+}
 
 function loadQuestion() {// loads questions and corresponding answers
-
-    console.log("---------------");
-    console.log("Question " + [questionPicker] + " was picked");//prints to log which Q was picked.
-    askedQ.textContent = possibleQs[questionPicker];
-    op1.textContent = possibleAs[questionPicker];
-    op2.textContent = decoyAs[questionPicker];
-    console.log("Question " + questionPicker + " was loaded.");
-
-
+    answerCheck.textContent = "";
+    answerCheck.style.color = "";
+    if (questionPicker < 5) {
+        console.log("---------------");
+        console.log("Question " + [questionPicker] + " was picked");//prints to log which Q was picked.
+        askedQ.textContent = possibleQs[questionPicker];
+        op1.textContent = possibleAs[questionPicker];
+        op2.textContent = possibleBs[questionPicker];
+        console.log("Question " + questionPicker + " was loaded.");
+    }
+    else if (questionPicker >= 5) {
+        timeEl.textContent = " ";
+        endMessage.textContent = "Thats all the questions!";
+        unloadQuestion()
+    }
 }
 
 function unloadQuestion() { //hides quiz content and displays playerinfo in console
@@ -147,5 +176,6 @@ startGame.addEventListener("click", function () { // this button when clicked re
 });
 submitEl.addEventListener("click", enterName);// records players name
 
-
+aBtn.addEventListener("click", aButtonPressed);
+bBtn.addEventListener("click", bButtonPressed);
 highscoreShow.addEventListener("click", highscore);//displays highscore scoreboard
