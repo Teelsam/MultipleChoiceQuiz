@@ -1,6 +1,6 @@
 var startGame = document.getElementById("start");
 var timeEl = document.getElementById("time");
-var timeLeft = 60; // Sets timer starting time.
+var timeLeft = 10; // Sets timer starting time.
 var endMessage = document.getElementById("outOfTimeMsg");
 var submitEl = document.querySelector("#submit");
 var nameInput = document.querySelector("#formName");
@@ -13,7 +13,6 @@ var op1 = document.getElementById("op1");
 var op2 = document.getElementById("op2");
 var aBtn = document.getElementById("a");
 var bBtn = document.getElementById("b");
-// var nextBtn = document.getElementById("next");
 var answerCheck = document.getElementById("answerCheck");
 var highscoreShow = document.getElementById("hsBtn");//this is the highscore button.
 var firstPosition = document.getElementById("firstPlace");
@@ -40,39 +39,34 @@ var thirdPlaceInfo = {//holds 3rd place score and name
     thirdPlace: "",
     thirdPlaceScore: 0,
 };
-
+// arrays of question content
 var possibleQs = ["What does getElementById look for?", "What does Math.floor do?", "What does JSON.stringify() do?", "What does -- do to an number?", "How often does setInterval (function(), 2000) refresh?",];
 var possibleAs = ["ids", "rounds number down", "turns an object into a string", "subtracts by 1", "every 2 seconds"];
 var possibleBs = ["classes", "gives a random number", "multiplies arguments", "turns an object into a string", "every 20 seconds"];
 
-function increaseQPicker() {
+function increaseQPicker() { // cycles the questions
     if (questionPicker < 5) {
         questionPicker++;
     }
 
     return;
 }
-function scoreAdditioner() {
+function scoreAdditioner() { // rewards players score
     score++;
     scoreCard.textContent = "Current Score:" + score;
 }
-function scoreSubtractioner() {
+function scoreSubtractioner() { //punishes players score
     score--;
     scoreCard.textContent = "Current Score:" + score;
 }
 function aButtonPressed() {// right choice selected.
-    if (possibleQs == questionPicker && possibleAs == questionPicker) {
-        answerCheck.style.color = "green";
-        answerCheck.textContent = "correct!";
-
-    }
     increaseQPicker();
     loadQuestion();
     scoreAdditioner();
 }
 function bButtonPressed() {// wrong choice selected.
     answerCheck.style.color = "red";
-    answerCheck.textContent = "false!";
+    answerCheck.textContent = "false! TIME REDUCED BY 5";
     timeLeft -= 5;
     scoreSubtractioner();
 
@@ -105,10 +99,7 @@ function unloadQuestion() { //hides quiz content and displays playerinfo in cons
     aBtn.style.visibility = "hidden";
     bBtn.style.visibility = "hidden";
     playerInfo.playerScore = score;
-    console.log(playerInfo);
     localStorage.setItem("playerInfo", JSON.stringify(playerInfo));
-
-
 
 }
 
@@ -135,19 +126,20 @@ function enterName(event) { // records name entered
 function timesUp() { //this displays text when timeLeft === 0
     timeEl.textContent = " ";
     endMessage.textContent = "Times up, Friend... ";
-
+    // and calls out endgame screen content.
     unloadQuestion();
     highscore();
 }
-
-function highscore() {//this loads the score board 
+function highscore() {
+    //this loads the score board 
     scoreBoardTitle.style.visibility = "visible";
     firstPosition.style.visibility = "visible";
     secondPosition.style.visibility = "visible"
     thirdPosition.style.visibility = "visible";
-    var scoreInfo = JSON.parse(localStorage.getItem("playerInfo"));
-    console.log("this is scoreinfo " + scoreInfo);
-    if (scoreInfo.playerScore > firstPlaceInfo.firstPlaceScore) {
+
+    var scoreInfo = JSON.parse(localStorage.getItem("playerInfo")); // This saves the information from the most recent play into memeory.
+
+    if (scoreInfo.playerScore > firstPlaceInfo.firstPlaceScore) { //this sets the most recent score to firstplacescore in memeory.
         firstPlaceInfo.firstPlaceScore = scoreInfo.playerScore;
         firstPlaceInfo.firstPlace = scoreInfo.playerName;
 
@@ -184,7 +176,6 @@ startGame.addEventListener("click", function () { // this button when clicked re
 
 });
 submitEl.addEventListener("click", enterName);// records players name
-
-aBtn.addEventListener("click", aButtonPressed);
-bBtn.addEventListener("click", bButtonPressed);
+aBtn.addEventListener("click", aButtonPressed);//when A button is pressed our game continues
+bBtn.addEventListener("click", bButtonPressed);//when b button is pressed our player is punished
 highscoreShow.addEventListener("click", highscore);//displays highscore scoreboard

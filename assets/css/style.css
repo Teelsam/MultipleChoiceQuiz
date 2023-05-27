@@ -1,13 +1,13 @@
-html {
+html { /*Sets a color for the whole page*/
     background-color:lightsteelblue;
 }
 
-header{
+header{/*Sets the headers style*/
     border: 10;
     border-style:ridge;
     border-color: brown;
 }
-header h1 {
+header h1 {/* styles the biggest header content*/
     
     text-align: center;
     padding-right: 200px;
@@ -16,7 +16,7 @@ header h1 {
     color:blanchedalmond;
 
 }
-header h2 {
+header h2 {/*styles the smaller headers content*/
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 200;
     text-align: center;
@@ -24,12 +24,12 @@ header h2 {
     padding-right: 200px;
 
 }
-body{
+body{ /*borders the body*/
     border: 3px;
     border-style: solid;
     border-color: brown;
 }
-form{
+form{/*styles the forms content*/
     display: flex;
     padding-right: 200px;
     justify-content: center;
@@ -44,7 +44,7 @@ form{
     background-color: thistle;
     border: 5px;
 }
-#outOfTimeMsg{
+#outOfTimeMsg{ /*styles the out of time message*/
     text-align: center;
     color:lavender;
     padding-right:  180px;
@@ -52,7 +52,7 @@ form{
     background-color:firebrick;
     border: 5px;
 }
-.question {
+.question {/*Styles the question area for the quiz*/
     background-color:lavender;
     border: 5px;
     border-style: double;
@@ -65,10 +65,10 @@ form{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     color:crimson;
 }
-.question h3{
+.question h3{/*styles the font size for the question asked*/
     font-size: 50px;
 }
-.options  {
+.options  { /*Styles the answer options */
     visibility: hidden;
     display: block;
     padding: 10px;
@@ -87,25 +87,22 @@ form{
     font-size: 15px;
 
 }
-#next{
-    font-size: 20px;
-}
-#next:hover{
-    background-color: chartreuse;
-}
-.buttons p {
+
+.buttons p { /*styles the name enter warning box*/
     display: flex;
     position: absolute;
     left: 300px;
     justify-content: center;
     width:10%;
-    color:brown;
-    background-color: blanchedalmond;
+    color:floralwhite;
+    background-color:navy;
     border: 2px;
+    border-style: double;
+    border-color: chartreuse;
 
 }
 
-.selectors:hover{
+.selectors:hover{/* styles the color change on the buttons a + b*/
     background-color: brown;
     color:blanchedalmond
 
@@ -124,33 +121,30 @@ form{
     color:blanchedalmond;
     box-shadow: 5px 8px 2px;
 }
-.correctFalseText #correctText{
+.correctFalseText{ /*positions the false text box*/
     display: flex;
     position:relative;
     right: 20px;
     width: 175px;
     justify-content: center;
 }
-#correctText{
-    background-color: forestgreen;
-    color:white;
-}
-#falseText{
+
+#falseText{ /*Sets false text style*/
     background-color: darkred;
     color:white;
 }
-.scoreSection{
+.scoreSection{/*positions score section spaces*/
     display: block;
     font-size: 30px;
     justify-content:center ;
 }
-#scoreCard{
+#scoreCard{/*styles the score card*/
     display: inline;
     justify-content: center;
     color:brown;
     background-color: burlywood;
 }
-#score {
+/* #score {
     display:block;
     visibility: visible;
     color:crimson;
@@ -159,18 +153,18 @@ form{
     left: 200px;
     width: auto;
     background-color:peachpuff;
-}
-#answerCheck{
+} */
+#answerCheck{ /*positions answercheck content*/
     width: 200px;
     position: relative;
     left:300px;
     justify-content: center;
     background-color:white;
 }
-.highscores, #scoreboardTitle {
+.highscores, #scoreboardTitle { /*hides scoreboard initially*/
     visibility: hidden;
 }
-.highscores li {
+.highscores li { /*styles score board*/
     padding: 5px;
     margin: 2px;
     border: 1px;
