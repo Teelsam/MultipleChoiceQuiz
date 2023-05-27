@@ -1,6 +1,6 @@
 var startGame = document.getElementById("start");
 var timeEl = document.getElementById("time");
-var timeLeft = 10; // Sets timer starting time.
+var timeLeft = 15; // Sets timer starting time.
 var endMessage = document.getElementById("outOfTimeMsg");
 var submitEl = document.querySelector("#submit");
 var nameInput = document.querySelector("#formName");
